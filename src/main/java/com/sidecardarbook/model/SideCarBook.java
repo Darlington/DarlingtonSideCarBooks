@@ -1,6 +1,5 @@
 package com.sidecardarbook.model;
 
-import javax.annotation.Generated;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,6 +21,12 @@ public class SideCarBook {
 		return id;
 	}
 	
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+
 	public int getYear() {
 		return year;
 	}
