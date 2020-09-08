@@ -2,17 +2,22 @@ package com.sidecardarbook.controller;
 
 import javax.websocket.server.PathParam;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.sidecardarbook.dao.SideCarBookRepo;
 import com.sidecardarbook.model.SideCarBook;
 
 
 @Controller
 public class SideCarBookController {
+	
+	Logger logger = LoggerFactory.getLogger(SideCarBookController.class);
 	
 	@Autowired
 	SideCarBookRepo repo;
@@ -30,15 +35,16 @@ public class SideCarBookController {
 		
 		repo.save(sideCarBook);
 		populateModelAndView();
+		logger.debug("added Book: " + new Gson().toJson(sideCarBook));
 		return modelandview;
 	}
-	
 	
 	@RequestMapping("/updateBook")
 	public ModelAndView updateBook(SideCarBook sideCarBook) {
 		
 		repo.save(sideCarBook);
 		populateModelAndView();
+		logger.debug("updated Book: " + new Gson().toJson(sideCarBook));
 		return modelandview;
 	}
 	
@@ -48,6 +54,7 @@ public class SideCarBookController {
 		if(repo.findById(id).isPresent()) {
 			repo.deleteById(id);
 		}
+		logger.debug("deleted Book with id: " + id);
 		populateModelAndView();
 		return modelandview;
 	}

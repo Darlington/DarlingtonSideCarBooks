@@ -17,8 +17,6 @@ public class SideCarBookUserDetails implements UserDetails {
 	private static final long serialVersionUID = 1L;
 	private SideCarBookUser sideCarBookUser;
 	
-	
-	
 	public SideCarBookUserDetails(SideCarBookUser sideCarBookUser) {
 		super();
 		this.sideCarBookUser = sideCarBookUser;
